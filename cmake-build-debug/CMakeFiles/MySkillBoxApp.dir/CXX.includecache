@@ -9,10 +9,8 @@
 D:/Programming/c++/MySkillBoxApp/main.cpp
 iostream
 -
+vector
+-
 string
--
-cstdlib
--
-ctime
 -
 
