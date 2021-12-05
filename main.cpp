@@ -6,65 +6,29 @@
 using namespace std;
 //using namespace boost::asio;
 
-template<typename T1, typename T2>
-struct MyMapIterator {
-    T1 key;
-    T2 value;
-};
-
-template<typename T1, typename T2>
-class MyMap {
-    vector<T1> key;
-    vector<T2> value;
+template<typename T>
+class MyVec {
+    vector<T> vec;
 
   public:
 
-    void add(T1 n1, T2 n2) {
-        key.push_back(n1);
-        value.push_back(n2);
-    }
-
-    void remove(T1 _key) {
-        for (int i = 0; i < key.size(); i++) {
-            if (key[i] == _key) {
-                for (int j = i; j < key.size()-1; i++) {
-                    key[j] = key[j+1];
-                    value[j] = value[j+1];
-                }
-                key.resize(key.size()-1);
-                value.resize(value.size()-1);
-            }
-        }
-    }
-
-    MyMapIterator<T1, T2> find(T1 _key) {
-        MyMapIterator<T1, T2> s;
-        for (int i = 0; i < key.size(); i++) {
-            if (key[i] == _key) {
-                s.key = key[i];
-                s.value = value[i];
-            }
-        }
-        return s;
+    void push_back(T n) {
+        vec.push_back(n);
     }
 
     void print() {
-        for (int i = 0; i < key.size(); i++) {
-            cout << key[i] << " - " << value[i] << endl;
-        }
+        T sum;
+        for (auto& i : vec) sum += i;
+        if (vec.size()!=0) cout << sum/vec.size() << endl;
+        else cout << "Error size" << endl;
     }
 };
 
 int main() {
-    MyMap<int, string> s;
-    s.add(1, "hello");
-    s.add(2, "privet");
+    MyVec<double> vec;
+    vec.print();
 
-    s.print();
-
-    auto it = s.find(2);
-    cout << "!" << it.value << endl;
-
-    s.remove(2);
-    s.print();
+    vec.push_back(10);
+    vec.push_back(8);
+    vec.print(); // 18/2
 }
